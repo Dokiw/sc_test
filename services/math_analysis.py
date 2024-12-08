@@ -41,12 +41,11 @@ class AuctionItemAnalyzerAsync:
 
     async def get_price_history(self, session: aiohttp.ClientSession, limit: int = 200, offset: int = 0) -> pd.DataFrame:
         params = {"limit": limit, "offset": offset, "additional": "false"}
-        print(f"я даун1 {params}")
+
         data = await self._fetch_data(session, "history", params)
-        print(f"я даун2 {data}")
+
         prices = data.get("prices", [])
-        print(f"я даун3 {prices}")
-        print(f"я даун4 {pd.DataFrame(prices)}")
+
         result = pd.DataFrame(prices)
         if not prices:
             return pd.DataFrame()
@@ -154,10 +153,10 @@ class AuctionItemAnalyzerAsync:
         cheapest_lot = lots.loc[lots["buyoutPrice"].idxmin()]
         print(type(cheapest_lot))
         print(cheapest_lot)
-        print("я непонятная хуйня!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print(cheapest_lot["buyoutPrice"])
         print(cheapest_lot["amount"])
-        print("2я непонятная хуйня!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         result = cheapest_lot["buyoutPrice"]
         print(type(result))
 
@@ -193,9 +192,4 @@ class AuctionItemAnalyzerAsync:
             }
 
 
-# Пример использования:
-#async def main():
-#    analyzer = AuctionItemAnalyzerAsync(region="eu", item="y1q9")
-#    report = await analyzer.get_analysis_report()
-#    print(report)
 
